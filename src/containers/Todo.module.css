@@ -1,0 +1,12 @@
+.todo {
+    display: flex;
+    align-items: center;
+}
+
+.todoText {
+    width: 250px;
+}
+
+.completed {
+    text-decoration: line-through;
+}
