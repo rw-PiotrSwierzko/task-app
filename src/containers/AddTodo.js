@@ -1,57 +1,35 @@
-import React from 'react';
-import styled from 'styled-components';
-import { useTasks, useTasksDispatch } from '../store/TasksContext';
-import {
-  addTodo, editTodo, setEditMode, setTodo,
-} from '../actions/actions';
-
-const Button = styled.button`
-  background: ${props => (props.primary ? 'palevioletred' : 'white')};
-  color: ${props => (props.primary ? 'white' : 'palevioletred')};
-
-  font-size: 1em;
-  margin: 1em;
-  padding: 0.25em 1em;
-  border: 2px solid palevioletred;
-  border-radius: 3px;
-`;
+import React, { useState } from 'react';
+import { useTasksDispatch } from '../context/TasksContext';
+import { addTodo } from '../actions/actions';
+import { Button } from '../components/Button';
 
 function AddTodo() {
-  const state = useTasks();
   const dispatch = useTasksDispatch();
+
+  const [text, setText] = useState('');
 
   function handleSubmit(e) {
     e.preventDefault();
-    if (!state.todo.text.length) {
-      return;
-    }
-    if (state.editMode) {
-      dispatch(editTodo({ id: state.todo.id, text: state.todo.text }));
-      dispatch(setEditMode(false));
-    } else {
-      const newTodo = {
+
+    if (text.length) {
+      dispatch(addTodo({
         id: Math.random(),
-        text: state.todo.text,
+        text,
         completed: false,
-      };
-      dispatch(addTodo(newTodo));
+      }));
     }
-    dispatch(setTodo({ id: '', text: '', completed: false }));
   }
 
   function handleChange(e) {
-    const text = e.target.value;
-    dispatch(setTodo({ ...state.todo, text }));
+    setText(e.target.value);
   }
 
   return (
-    <form className="ui form" onSubmit={handleSubmit}>
-      <div className="ui large action input">
-        <input onChange={handleChange} placeholder="New todo" type="text" value={state.todo.text} />
-        <Button primary type="submit">{state.editMode ? 'Save' : 'Add'}</Button>
-      </div>
+    <form onSubmit={handleSubmit}>
+      <input onChange={handleChange} placeholder="New todo" type="text" />
+      <Button primary type="submit">Add</Button>
     </form>
   );
 }
 
-export default AddTodo;
+export { AddTodo };

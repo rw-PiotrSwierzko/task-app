@@ -1,12 +1,16 @@
 import React from 'react';
-import { useTasks, useTasksDispatch } from '../store/TasksContext';
+import PropTypes from 'prop-types';
+import { useTasks, useTasksDispatch } from '../context/TasksContext';
 
 import styles from './Todo.module.css';
 import {
-  deleteTodo, setEditMode, setTodo, toggleTodo,
+  deleteTodo, setIsEditing, setTaskId, setTodo, toggleTodo,
 } from '../actions/actions';
+import { useAppDispatch } from '../context/AppContext';
 
-function Todo({ id, text, completed }) {
+const Todo = ({ id, text, completed }) => {
+  const appDispatch = useAppDispatch();
+
   const state = useTasks();
   const dispatch = useTasksDispatch();
 
@@ -14,14 +18,13 @@ function Todo({ id, text, completed }) {
     dispatch(deleteTodo(todoId));
     if (state.todo.id) {
       dispatch(setTodo({ id: '', text: '', completed: false }));
-      dispatch(setEditMode(false));
+      appDispatch(setIsEditing(false));
     }
   }
 
-  function onEditClick(todoId) {
-    const foundTodo = state.todos.find(todo => todo.id === todoId);
-    dispatch(setTodo(foundTodo));
-    dispatch(setEditMode(true));
+  function onEditClick(taskId) {
+    appDispatch(setTaskId(taskId));
+    appDispatch(setIsEditing(true));
   }
 
   function onTodoClick(todoId) {
@@ -31,25 +34,33 @@ function Todo({ id, text, completed }) {
   return (
     <div className={`${styles.todo} item`}>
       <i
+        aria-hidden="true"
         className={`large circle outline icon ${completed ? 'check teal' : ''}`}
         onClick={() => onTodoClick(id)}
       />
       <span
+        aria-hidden="true"
         className={`${styles.todoText} item ${completed ? styles.completed : ''}`}
         onClick={() => onTodoClick(id)}
       >
         {text}
       </span>
       <div className="right floated content">
-        <div className="circular ui icon button" onClick={() => onEditClick(id)}>
+        <div aria-hidden="true" className="circular ui icon button" onClick={() => onEditClick(id)}>
           edit
         </div>
-        <div className="circular ui icon button" onClick={() => onDeleteClick(id)}>
+        <div aria-hidden="true" className="circular ui icon button" onClick={() => onDeleteClick(id)}>
           delete
         </div>
       </div>
     </div>
   );
-}
+};
 
-export default Todo;
+Todo.propTypes = {
+  id: PropTypes.number,
+  text: PropTypes.string,
+  completed: PropTypes.bool,
+};
+
+export { Todo };

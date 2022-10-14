@@ -1,5 +1,5 @@
 import React from 'react';
-import { useTasks } from '../store/TasksContext';
+import { useTasks } from '../context/TasksContext';
 import { TodoList } from '../components/TodoList';
 
 const getVisibleTodos = (todos, filter) => {

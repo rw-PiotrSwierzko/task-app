@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { useTasks, useTasksDispatch } from '../store/TasksContext';
+import { useTasks, useTasksDispatch } from '../context/TasksContext';
 import { setVisibilityFilter } from '../actions/actions';
 
 const Wrapper = styled.h1`

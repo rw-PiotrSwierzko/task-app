@@ -1,16 +1,16 @@
 import React from 'react';
-import { useTasks, useTasksDispatch } from '../store/TasksContext';
 import { setSearchTerm } from '../actions/actions';
+import { useApp, useAppDispatch } from '../context/AppContext';
 
 const SearchBar = () => {
-  const state = useTasks();
-  const dispatch = useTasksDispatch();
+  const state = useApp();
+  const appDispatch = useAppDispatch();
 
   return (
     <div className="ui transparent inverted icon input">
       <input
         onChange={(e) => {
-          dispatch(setSearchTerm(e.target.value));
+          appDispatch(setSearchTerm(e.target.value));
         }}
         placeholder="Search..."
         type="text"

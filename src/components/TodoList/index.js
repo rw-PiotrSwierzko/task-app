@@ -1,5 +1,6 @@
 import React from 'react';
-import Todo from '../../containers/Todo';
+import PropTypes from 'prop-types';
+import { Todo } from '../../containers/Todo';
 
 const TodoList = ({ todos }) => (todos.length > 0 ? (
   <div className="ui items">
@@ -8,5 +9,13 @@ const TodoList = ({ todos }) => (todos.length > 0 ? (
     ))}
   </div>
 ) : null);
+
+TodoList.propTypes = {
+  todos: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number,
+    text: PropTypes.string,
+    completed: PropTypes.bool,
+  })),
+};
 
 export { TodoList };

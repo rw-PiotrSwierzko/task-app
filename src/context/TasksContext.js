@@ -1,5 +1,5 @@
 import { createContext, useContext, useReducer } from 'react';
-import tasksReducer from '../reducers/tasksReducer';
+import { tasksReducer } from '../reducers/tasksReducer';
 // import { usePersistedContext, usePersistedReducer } from './localStorage';
 
 const initialTasks = {
@@ -39,5 +39,5 @@ const useTasks = () => useContext(TasksContext);
 const useTasksDispatch = () => useContext(TasksDispatchContext);
 
 export {
-  TasksContext, TasksProvider, useTasks, useTasksDispatch,
+  TasksProvider, useTasks, useTasksDispatch,
 };

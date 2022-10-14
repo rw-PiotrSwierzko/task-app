@@ -2,8 +2,8 @@ export const setTodo = (todo) => ({
   type: 'SET_TODO', payload: todo,
 });
 
-export const addTodo = (todo) => ({
-  type: 'ADD_TODO', payload: todo,
+export const addTodo = (task) => ({
+  type: 'ADD_TODO', task,
 });
 
 export const deleteTodo = (todoId) => ({
@@ -14,12 +14,16 @@ export const toggleTodo = (todoId) => ({
   type: 'TOGGLE_TODO', payload: todoId,
 });
 
-export const setEditMode = (editMode) => ({
-  type: 'SET_EDIT_MODE', payload: editMode,
+export const setIsEditing = (isEditing) => ({
+  type: 'SET_IS_EDITING', isEditing,
 });
 
-export const editTodo = (todo) => ({
-  type: 'EDIT_TODO', payload: todo,
+export const setTaskId = (taskId) => ({
+  type: 'SET_TASK_ID', taskId,
+});
+
+export const editTodo = (task) => ({
+  type: 'EDIT_TODO', task,
 });
 
 export const setVisibilityFilter = (filter) => ({
@@ -27,5 +31,5 @@ export const setVisibilityFilter = (filter) => ({
 });
 
 export const setSearchTerm = (searchTerm) => ({
-  type: 'SET_SEARCH_TERM', payload: searchTerm,
+  type: 'SET_SEARCH_TERM', searchTerm,
 });
