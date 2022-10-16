@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useTasks, useTasksDispatch } from '../context/TasksContext';
-import { editTodo, setIsEditing } from '../actions/actions';
+import { editTask, setIsEditing } from '../actions/actions';
 import { useAppDispatch } from '../context/AppContext';
 import { Button } from '../components/Button';
 
-const EditTodo = ({ taskId }) => {
+const EditTask = ({ taskId }) => {
   const state = useTasks();
   const dispatch = useTasksDispatch();
   const appDispatch = useAppDispatch();
@@ -13,13 +13,13 @@ const EditTodo = ({ taskId }) => {
   const [task, setTask] = useState({ text: '' });
 
   useEffect(() => {
-    setTask(state.todos.find(todo => todo.id === taskId));
+    setTask(state.tasks.find(t => t.id === taskId));
   }, [taskId]);
 
   function handleSubmit(e) {
     e.preventDefault();
     if (task.text.length) {
-      dispatch(editTodo(task));
+      dispatch(editTask(task));
       appDispatch(setIsEditing(false));
     }
   }
@@ -39,8 +39,8 @@ const EditTodo = ({ taskId }) => {
   );
 };
 
-EditTodo.propTypes = {
+EditTask.propTypes = {
   taskId: PropTypes.number,
 };
 
-export { EditTodo };
+export { EditTask };

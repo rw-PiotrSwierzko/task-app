@@ -1,9 +1,9 @@
-.todo {
+.task {
     display: flex;
     align-items: center;
 }
 
-.todoText {
+.taskText {
     width: 250px;
 }
 

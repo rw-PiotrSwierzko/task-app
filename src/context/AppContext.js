@@ -1,9 +1,10 @@
 import { createContext, useContext, useReducer } from 'react';
+import PropTypes from 'prop-types';
 import { appReducer } from '../reducers/appReducer';
 
 const initialState = {
   isEditing: false,
-  todoId: '',
+  taskId: '',
   searchTerm: '',
 };
 
@@ -25,6 +26,10 @@ const AppProvider = ({ children }) => {
 const useApp = () => useContext(AppContext);
 
 const useAppDispatch = () => useContext(AppDispatchContext);
+
+AppProvider.propTypes = {
+  children: PropTypes.node,
+};
 
 export {
   AppProvider, useApp, useAppDispatch,

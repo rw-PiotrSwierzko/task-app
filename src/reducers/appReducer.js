@@ -20,4 +20,6 @@ const appReducer = (state, action) => {
   }
 };
 
-export { appReducer };
+export {
+  appReducer,
+};

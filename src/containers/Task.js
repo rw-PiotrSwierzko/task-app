@@ -2,22 +2,22 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useTasks, useTasksDispatch } from '../context/TasksContext';
 
-import styles from './Todo.module.css';
+import styles from './Task.module.css';
 import {
-  deleteTodo, setIsEditing, setTaskId, setTodo, toggleTodo,
+  deleteTask, setIsEditing, setTaskId, setTask, toggleTask,
 } from '../actions/actions';
 import { useAppDispatch } from '../context/AppContext';
 
-const Todo = ({ id, text, completed }) => {
+const Task = ({ id, text, completed }) => {
   const appDispatch = useAppDispatch();
 
   const state = useTasks();
   const dispatch = useTasksDispatch();
 
-  function onDeleteClick(todoId) {
-    dispatch(deleteTodo(todoId));
-    if (state.todo.id) {
-      dispatch(setTodo({ id: '', text: '', completed: false }));
+  function onDeleteClick(taskId) {
+    dispatch(deleteTask(taskId));
+    if (state.task.id) {
+      dispatch(setTask({ id: '', text: '', completed: false }));
       appDispatch(setIsEditing(false));
     }
   }
@@ -27,21 +27,21 @@ const Todo = ({ id, text, completed }) => {
     appDispatch(setIsEditing(true));
   }
 
-  function onTodoClick(todoId) {
-    dispatch(toggleTodo(todoId));
+  function onTaskClick(taskId) {
+    dispatch(toggleTask(taskId));
   }
 
   return (
-    <div className={`${styles.todo} item`}>
+    <div className={`${styles.task} item`}>
       <i
         aria-hidden="true"
         className={`large circle outline icon ${completed ? 'check teal' : ''}`}
-        onClick={() => onTodoClick(id)}
+        onClick={() => onTaskClick(id)}
       />
       <span
         aria-hidden="true"
-        className={`${styles.todoText} item ${completed ? styles.completed : ''}`}
-        onClick={() => onTodoClick(id)}
+        className={`${styles.taskText} item ${completed ? styles.completed : ''}`}
+        onClick={() => onTaskClick(id)}
       >
         {text}
       </span>
@@ -57,10 +57,10 @@ const Todo = ({ id, text, completed }) => {
   );
 };
 
-Todo.propTypes = {
+Task.propTypes = {
   id: PropTypes.number,
   text: PropTypes.string,
   completed: PropTypes.bool,
 };
 
-export { Todo };
+export { Task };
