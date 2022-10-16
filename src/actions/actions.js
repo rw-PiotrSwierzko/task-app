@@ -1,17 +1,13 @@
-export const setTask = (task) => ({
-  type: 'SET_TASK', payload: task,
-});
-
 export const addTask = (task) => ({
   type: 'ADD_TASK', task,
 });
 
 export const deleteTask = (taskId) => ({
-  type: 'DELETE_TASK', payload: taskId,
+  type: 'DELETE_TASK', taskId,
 });
 
 export const toggleTask = (taskId) => ({
-  type: 'TOGGLE_TASK', payload: taskId,
+  type: 'TOGGLE_TASK', taskId,
 });
 
 export const setIsEditing = (isEditing) => ({

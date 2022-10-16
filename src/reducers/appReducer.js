@@ -15,6 +15,11 @@ const appReducer = (state, action) => {
         ...state,
         searchTerm: action.searchTerm,
       };
+    case 'SET_VISIBILITY_FILTER':
+      return {
+        ...state,
+        filter: action.filter,
+      };
     default:
       return state;
   }

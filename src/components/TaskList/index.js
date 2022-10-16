@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Task } from '../../containers/Task';
 
 const TaskList = ({ tasks }) => (tasks.length > 0 ? (
-  <div className="ui items">
+  <div>
     {tasks.map(task => (
       <Task key={task.id} {...task} />
     ))}

@@ -1,23 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useTasks, useTasksDispatch } from '../context/TasksContext';
+import { useTasksDispatch } from '../context/TasksContext';
 
 import styles from './Task.module.css';
 import {
-  deleteTask, setIsEditing, setTaskId, setTask, toggleTask,
+  deleteTask, setIsEditing, setTaskId, toggleTask,
 } from '../actions/actions';
-import { useAppDispatch } from '../context/AppContext';
+import { useApp, useAppDispatch } from '../context/AppContext';
 
 const Task = ({ id, text, completed }) => {
-  const appDispatch = useAppDispatch();
-
-  const state = useTasks();
+  const app = useApp();
   const dispatch = useTasksDispatch();
+  const appDispatch = useAppDispatch();
 
   function onDeleteClick(taskId) {
     dispatch(deleteTask(taskId));
-    if (state.task.id) {
-      dispatch(setTask({ id: '', text: '', completed: false }));
+    if (app.taskId === taskId) {
       appDispatch(setIsEditing(false));
     }
   }
@@ -32,24 +30,19 @@ const Task = ({ id, text, completed }) => {
   }
 
   return (
-    <div className={`${styles.task} item`}>
-      <i
-        aria-hidden="true"
-        className={`large circle outline icon ${completed ? 'check teal' : ''}`}
-        onClick={() => onTaskClick(id)}
-      />
+    <div className={`${styles.task}`}>
       <span
         aria-hidden="true"
-        className={`${styles.taskText} item ${completed ? styles.completed : ''}`}
+        className={`${styles.taskText} ${completed ? styles.completed : ''}`}
         onClick={() => onTaskClick(id)}
       >
         {text}
       </span>
-      <div className="right floated content">
-        <div aria-hidden="true" className="circular ui icon button" onClick={() => onEditClick(id)}>
+      <div>
+        <div aria-hidden="true" onClick={() => onEditClick(id)}>
           edit
         </div>
-        <div aria-hidden="true" className="circular ui icon button" onClick={() => onDeleteClick(id)}>
+        <div aria-hidden="true" onClick={() => onDeleteClick(id)}>
           delete
         </div>
       </div>

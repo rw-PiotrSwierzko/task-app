@@ -8,9 +8,9 @@ const getVisibleTasks = (tasks, filter) => {
     case 'SHOW_ALL':
       return tasks;
     case 'SHOW_COMPLETED':
-      return tasks.filter(t => t.completed);
+      return tasks.filter(task => task.completed);
     case 'SHOW_INCOMPLETED':
-      return tasks.filter(t => !t.completed);
+      return tasks.filter(task => !task.completed);
     default:
       return tasks;
   }
@@ -21,13 +21,13 @@ const includesLowerCase = (searchTerm) => task => task.text.toLowerCase().includ
 const getFilteredTasks = (tasks, searchTerm) => tasks.filter(includesLowerCase(searchTerm));
 
 const VisibleTaskList = () => {
-  const state = useTasks();
-  const app = useApp();
+  const tasks = useTasks();
+  const { filter, searchTerm } = useApp();
 
-  const visibleTasks = getVisibleTasks(state.tasks, state.filter);
+  const visibleTasks = getVisibleTasks(tasks, filter);
 
-  return state.tasks.length > 0 ? (
-    <TaskList tasks={getFilteredTasks(visibleTasks, app.searchTerm)} />
+  return tasks.length ? (
+    <TaskList tasks={getFilteredTasks(visibleTasks, searchTerm)} />
   ) : null;
 };
 
