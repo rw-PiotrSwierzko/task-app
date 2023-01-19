@@ -1,11 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 import { AddTask } from './AddTask';
-import { VisibleTaskList } from './VisibleTaskList';
 import { Filter } from '../components/Filter';
 import { NavBar } from '../components/NavBar';
 import { useApp } from '../context/AppContext';
 import { EditTask } from './EditTask';
+import { TaskList } from '../components/TaskList';
 
 const Wrapper = styled.div`
   min-height: 100vh;
@@ -57,7 +57,7 @@ const TaskApp = () => {
         </SideNavContainer>
         <DivMainContainer>
           {app.isEditing ? <EditTask taskId={app.taskId} /> : <AddTask /> }
-          <VisibleTaskList />
+          <TaskList />
         </DivMainContainer>
       </Container>
     </Wrapper>

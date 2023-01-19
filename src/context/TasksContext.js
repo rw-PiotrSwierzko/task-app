@@ -32,5 +32,5 @@ TasksProvider.propTypes = {
 };
 
 export {
-  TasksProvider, useTasks, useTasksDispatch,
+  TasksProvider, useTasks, useTasksDispatch, TasksContext,
 };

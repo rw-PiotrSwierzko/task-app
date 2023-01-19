@@ -1,8 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Task } from '../../containers/Task';
+import { useTasks } from '../../context/TasksContext';
 
-const TaskList = ({ loading, tasks }) => {
+const TaskList = ({ loading }) => {
+  const tasks = useTasks();
+
   const LoadingRow = (
     <div className="loading-item">
       <span className="glow-checkbox" />

@@ -10,8 +10,6 @@ I
 src/containers/AddTask.js,b\9\b9532424d806e5834ddccf71e6816e2fb2c76cce
 J
 src/containers/EditTask.js,8\b\8bfd269787710ea40a2bf984c900efae065526b3
-L
-src/reducers/tasksReducer.js,2\0\20242eee36bea865e941c605b3efd3528f75795e
 J
 src/reducers/appReducer.js,6\f\6fabc9ca636d1849c53580ec071d4f8563d505e6
 F
@@ -50,9 +48,5 @@ N
 	README.md,8\e\8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
 S
 #src/components/Task/Task.stories.js,7\5\755d9122e5d9c5a59a18a59d3b0aa6e11ee58fc8
-[
-+src/components/TaskList/TaskList.stories.js,5\8\580a62cd4c9d5c3473be795c17fed4637d67d658
 \
 ,src/components/Task/TaskComponent.module.css,9\2\92ac48909dc0576cb8b6cab12ed88556c14ff766
-<
-package.json,7\0\7030d0b2f71b999ff89a343de08c414af32fc93a
