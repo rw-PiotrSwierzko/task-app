@@ -3,28 +3,27 @@ module.exports = {
     browser: true,
     es2021: true,
   },
-  extends: [
-    'plugin:react/recommended',
-    'airbnb',
-  ],
-  overrides: [
-  ],
+  extends: ['plugin:react/recommended', 'airbnb', 'plugin:storybook/recommended'],
+  overrides: [],
   parserOptions: {
     ecmaVersion: 'latest',
     sourceType: 'module',
   },
-  plugins: [
-    'react',
-  ],
+  plugins: ['react'],
   rules: {
-    'max-len': [2, { code: 120 }],
+    'max-len': [2, {
+      code: 120,
+    }],
     'arrow-parens': 0,
     'comma-dangle': [2, 'always-multiline'],
     'arrow-spacing': 2,
     'no-lonely-if': 2,
     'jsx-quotes': [2, 'prefer-double'],
     'no-alert': 2,
-    'prefer-destructuring': [2, { object: true, array: false }],
+    'prefer-destructuring': [2, {
+      object: true,
+      array: false,
+    }],
     'no-shadow': 2,
     'no-use-before-define': 0,
     'no-console': 2,
@@ -39,7 +38,9 @@ module.exports = {
     'react/forbid-prop-types': 2,
     'react/jsx-no-target-blank': 2,
     'react/react-in-jsx-scope': 0,
-    'react/jsx-filename-extension': [2, { extensions: ['.js', '.jsx', '.ts', '.tsx'] }],
+    'react/jsx-filename-extension': [2, {
+      extensions: ['.js', '.jsx', '.ts', '.tsx'],
+    }],
     'react/function-component-definition': 0,
     'import/prefer-default-export': 0,
     'import/no-default-export': 2,

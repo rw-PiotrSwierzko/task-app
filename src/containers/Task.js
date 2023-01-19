@@ -1,52 +1,43 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { useTasksDispatch } from '../context/TasksContext';
 
-import styles from './Task.module.css';
 import {
   deleteTask, setIsEditing, setTaskId, toggleTask,
 } from '../actions/actions';
 import { useApp, useAppDispatch } from '../context/AppContext';
+import { TaskComponent } from '../components/Task';
 
 const Task = ({ id, text, completed }) => {
   const app = useApp();
   const dispatch = useTasksDispatch();
   const appDispatch = useAppDispatch();
 
-  function onDeleteClick(taskId) {
-    dispatch(deleteTask(taskId));
-    if (app.taskId === taskId) {
+  const onDeleteClick = useCallback(() => {
+    dispatch(deleteTask(id));
+    if (app.taskId === id) {
       appDispatch(setIsEditing(false));
     }
-  }
+  }, [id]);
 
-  function onEditClick(taskId) {
-    appDispatch(setTaskId(taskId));
+  const onEditClick = useCallback(() => {
+    appDispatch(setTaskId(id));
     appDispatch(setIsEditing(true));
-  }
+  }, [id]);
 
-  function onTaskClick(taskId) {
-    dispatch(toggleTask(taskId));
-  }
+  const onTaskClick = useCallback(() => {
+    dispatch(toggleTask(id));
+  }, [id]);
 
   return (
-    <div className={`${styles.task}`}>
-      <span
-        aria-hidden="true"
-        className={`${styles.taskText} ${completed ? styles.completed : ''}`}
-        onClick={() => onTaskClick(id)}
-      >
-        {text}
-      </span>
-      <div>
-        <div aria-hidden="true" onClick={() => onEditClick(id)}>
-          edit
-        </div>
-        <div aria-hidden="true" onClick={() => onDeleteClick(id)}>
-          delete
-        </div>
-      </div>
-    </div>
+    <TaskComponent
+      completed={completed}
+      id={id}
+      onDeleteClick={onDeleteClick}
+      onEditClick={onEditClick}
+      onTaskClick={onTaskClick}
+      text={text}
+    />
   );
 };
 

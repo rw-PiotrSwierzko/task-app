@@ -26,9 +26,7 @@ const VisibleTaskList = () => {
 
   const visibleTasks = getVisibleTasks(tasks, filter);
 
-  return tasks.length ? (
-    <TaskList tasks={getFilteredTasks(visibleTasks, searchTerm)} />
-  ) : null;
+  return <TaskList tasks={getFilteredTasks(visibleTasks, searchTerm)} />;
 };
 
 export { VisibleTaskList };
