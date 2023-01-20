@@ -18,8 +18,6 @@ L
 src/containers/FilterLink.js,e\2\e2d3037b6e182573134cbbe840d186b385b762d1
 K
 src/containers/SearchBar.js,5\2\5241b3df5e2770c80c62705e499d254d19a43428
-I
-src/context/AppContext.js,1\4\14ff18804162790e4dcafa38805cf230755c47af
 F
 src/stories/button.css,8\0\802536010ac190f323bbcc513f417dc29496952c
 F
@@ -44,9 +42,11 @@ O
 src/components/Filter/index.jsx,4\c\4cf0ffb61c23241cc66261da9486140df75c17b9
 N
 src/components/Button/index.js,1\4\14f023b3274b44097f7fdf7997679e6969db9f7a
-9
-	README.md,8\e\8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
-S
-#src/components/Task/Task.stories.js,7\5\755d9122e5d9c5a59a18a59d3b0aa6e11ee58fc8
 \
 ,src/components/Task/TaskComponent.module.css,9\2\92ac48909dc0576cb8b6cab12ed88556c14ff766
+F
+src/containers/Task.js,e\a\ea607338976f13d231b18f763f08e9c6b2eaa89c
+=
+src/index.css,c\5\c5d38a62d1faae90a2acaa34b79a7ef365c917e4
+Q
+!src/containers/VisibleTaskList.js,0\c\0cc9b853749ab7c082d0371ac76ab958d3ee2128

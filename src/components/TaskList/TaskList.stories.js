@@ -3,47 +3,65 @@ import React from 'react';
 import { withReactContext } from 'storybook-react-context';
 import { TaskList } from './index';
 import { TasksContext } from '../../context/TasksContext';
-// import * as TaskStories from '../Task/Task.stories';
 
-const initialState = [
-  { id: 0, text: 'Philosopher’s Path', completed: true },
-  { id: 1, text: 'Visit the temple', completed: false },
-  { id: 2, text: 'Drink matcha', completed: false },
-];
+const initialState = {
+  tasks: [
+    { id: 0, text: 'typescript', completed: true },
+    { id: 1, text: 'storybook', completed: true },
+    { id: 2, text: 'zustand', completed: true },
+    { id: 3, text: 'react query', completed: false },
+    { id: 4, text: 'mock service worker', completed: false },
+  ],
+  status: 'idle',
+  error: null,
+};
 
 // eslint-disable-next-line import/no-default-export
 export default {
   component: TaskList,
-  title: 'TaskList',
-  decorators: [
-    withReactContext({
-      Context: TasksContext,
-      initialState,
-    }),
-  ],
+  title: 'TaskList (react context)',
 };
 
 const Template = args => <TaskList {...args} />;
 
 export const Default = Template.bind({});
-// Default.args = {
-//   tasks: [
-//     { ...TaskStories.Default.args.task, id: '1', text: 'Task 1' },
-//     { ...TaskStories.Default.args.task, id: '2', text: 'Task 2' },
-//     { ...TaskStories.Default.args.task, id: '3', text: 'Task 3' },
-//     { ...TaskStories.Default.args.task, id: '4', text: 'Task 4' },
-//     { ...TaskStories.Default.args.task, id: '5', text: 'Task 5' },
-//   ],
-// };
+Default.decorators = [
+  withReactContext({
+    Context: TasksContext,
+    initialState,
+  }),
+];
 
 export const Loading = Template.bind({});
-Loading.args = {
-  tasks: [],
-  loading: true,
-};
+Loading.decorators = [
+  withReactContext({
+    Context: TasksContext,
+    initialState: {
+      ...initialState,
+      status: 'loading',
+    },
+  }),
+];
+
+export const Error = Template.bind({});
+Error.decorators = [
+  withReactContext({
+    Context: TasksContext,
+    initialState: {
+      tasks: null,
+      status: 'error',
+      error: { message: 'error msg' },
+    },
+  }),
+];
 
 export const Empty = Template.bind({});
-Empty.args = {
-  ...Loading.args,
-  loading: false,
-};
+Empty.decorators = [
+  withReactContext({
+    Context: TasksContext,
+    initialState: {
+      ...initialState,
+      tasks: [],
+    },
+  }),
+];

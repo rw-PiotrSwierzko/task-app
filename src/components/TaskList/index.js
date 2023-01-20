@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { Task } from '../../containers/Task';
 import { useTasks } from '../../context/TasksContext';
 
-const TaskList = ({ loading }) => {
-  const tasks = useTasks();
+const TaskList = () => {
+  const { tasks, status, error } = useTasks();
 
   const LoadingRow = (
     <div className="loading-item">
@@ -18,7 +18,17 @@ const TaskList = ({ loading }) => {
       </span>
     </div>
   );
-  if (loading) {
+
+  if (status === 'error') {
+    return (
+      <span>
+        Error:
+        {error.message}
+      </span>
+    );
+  }
+
+  if (status === 'loading') {
     return (
       <div key="loading" className="list-items" data-testid="loading">
         {LoadingRow}
