@@ -12,8 +12,8 @@ const Template = args => <TaskComponent {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {
-  id: 1,
-  text: 'Test Task',
+  id: 0,
+  text: 'typescript',
   completed: false,
 };
 

@@ -1,19 +1,19 @@
 import React from 'react';
-import { setSearchTerm } from '../actions/actions';
-import { useApp, useAppDispatch } from '../context/AppContext';
+import { useStore } from '../context/AppStore';
 
 const SearchBar = () => {
-  const app = useApp();
-  const appDispatch = useAppDispatch();
+  // zustand
+  const searchTerm = useStore((state) => state.searchTerm);
+  const setSearchTerm = useStore((state) => state.setSearchTerm);
 
   return (
     <input
       onChange={(e) => {
-        appDispatch(setSearchTerm(e.target.value));
+        setSearchTerm(e.target.value);
       }}
       placeholder="Search..."
       type="text"
-      value={app.searchTerm}
+      value={searchTerm}
     />
   );
 };
